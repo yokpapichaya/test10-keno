@@ -90,6 +90,9 @@ header {
                                 font-size: 1.6rem;
                                 font-weight: 500;
                                 @include flexcenter();
+                                &.lock{
+                                    pointer-events: none;
+                                }
                             }
 
                             .sub-menu {

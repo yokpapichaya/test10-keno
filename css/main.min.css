@@ -11569,6 +11569,8 @@ header {
               display: flex;
               align-items: center;
               justify-content: center; }
+              header .main-haeader .navbar .container .menu .menu-list .menu-list__item > a.lock {
+                pointer-events: none; }
             header .main-haeader .navbar .container .menu .menu-list .menu-list__item .sub-menu {
               position: absolute;
               opacity: 0;
@@ -12711,6 +12713,9 @@ i {
       background-image: linear-gradient(to left, #9abae9, #9abbed, #99bdf0, #99bef4, #99bff8, #96befa, #92bdfc, #8fbcfe, #88b8fe, #80b4ff, #79afff, #71abff);
       border-color: transparent;
       color: #fff; }
+    .home .sec-tab .nav-tabs .nav-link:nth-child(2) {
+      border-left: 0.1rem solid #71abff;
+      border-right: 0.1rem solid #71abff; }
     .home .sec-tab .nav-tabs .nav-link#nav-profile-tab {
       position: relative; }
 

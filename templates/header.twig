@@ -31,7 +31,7 @@
                     <ul class="menu-list">
                     {% for item in options.main_menu %}
                         <li class="menu-list__item">
-                            <a href="{% if item.check_link == 'out' %}{{ item.url }}{% elseif item.check_link == 'in' %}{{ TimberPost(item.page_link).link }}{% else %}ambbet.com{% endif %}" {% if item.check_link != 'in' %}target="_blank"{% endif %} class="menu_check {% if item.check_link == 'sport' %}sport-item{% endif %}">
+                            <a href="{% if item.check_link == 'out' %}{{ item.url }}{% elseif item.check_link == 'in' %}{{ TimberPost(item.page_link).link }}{% else %}ambbet.com{% endif %}" {% if item.check_link != 'in' %}target="_blank"{% endif %} class="menu_check {% if item.check_link == 'sport' %}sport-item{% endif %}{% if item.usesub == 1 %}lock{% endif %}">
                                 <i class="icon-menu" style="background-image: url('{{ TimberImage(item.icon).src }}')"></i>
                                 {{ item.menu_name }}
                                 {% if item.usesub == 1 %}
