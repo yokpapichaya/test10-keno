@@ -1,0 +1,14 @@
+.page-template-page-contact{
+    .sec-page-content{
+        margin-top: 2rem;
+        p{
+            text-align: center;
+        }
+    }
+    .sec-contact{
+        margin: 4rem 0;
+        @media screen and (max-width: 767px) {
+            margin: 2rem 0;
+        }
+    }
+}

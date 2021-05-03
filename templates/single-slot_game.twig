@@ -1,0 +1,14 @@
+{% extends "base.twig" %}
+{% block content %}
+<section class="box-list-game">
+	<div class="container">
+		<div class="box-list-game__bc">
+            <i class="fas fa-home"></i>
+            <a href="{{ site.url }}">หน้าหลัก</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>{{ post.title }}</span>
+        </div>
+		<div id="{{ post.id }}" class="row game-list"></div>
+	</div>
+</section>
+{% endblock %}

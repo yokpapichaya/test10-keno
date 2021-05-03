@@ -1,0 +1,17 @@
+<section class="sec-banner">
+    <div class="swiper-container" id="h-banner">
+        <div class="swiper-wrapper">
+        {% for banner in options.h_banner_image %}
+            {# <div class="swiper-slide animate__animated animate__bounce" style="background-image: url('{{ TimberImage(banner).src }}');"></div>   #}
+            <img class="swiper-slide" src="{{ TimberImage(banner).src }}">
+        {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="sec-announcement">
+    <div class="box-announcement">
+        <div class="container">
+            <div class="box-announcement__text"><i class="i-annoutment"></i><marquee>{{ options.h_announcement }}</marquee></div>
+        </div>
+    </div>
+</section>

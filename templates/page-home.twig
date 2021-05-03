@@ -1,0 +1,108 @@
+{% extends 'base.twig' %}
+{% block content %}
+{% include 'templates/partial/banner.twig' %}
+
+<section class="sec-service">
+    <div class="container">
+        <div class="box-service-container row">
+            {% for service in options.h_link %}
+              {% if service.h_link_choose == 'in' %}
+              <div class="col-4 col-md-2">
+                <a href="{{ service.h_link_page }}" class="box-service swiper-slide" style="background-image: url('{{ TimberImage(service.h_link_image).src }}"><div class="box-service-hover">{{ service.h_link_name }}</div></a>   
+              </div>
+              {% elseif service.h_link_choose == 'out' %}
+              <div class="col-4 col-md-2">
+                <a href="{{ service.h_link_url }}" class="box-service swiper-slide" target="_blank" style="background-image: url('{{ TimberImage(service.h_link_image).src }}"><div class="box-service-hover">{{ service.h_link_name }}</div></a>
+              </div>
+              {% else %}
+              <div class="col-4 col-md-2">
+                <a href="ambbet.com" class="box-service swiper-slide sport-item" target="_blank" style="background-image: url('{{ TimberImage(service.h_link_image).src }}"><div class="box-service-hover">{{ service.h_link_name }}</div></a>
+              </div>
+              {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="sec-tab">
+    <div class="container">
+        <div class="box-con">
+            <div class="box-tab">
+                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-casino" role="tab" aria-controls="nav-casino" aria-selected="false">คาสิโน</a>
+                    <a class="nav-item nav-link" id="nav-slot-tab" data-toggle="tab" href="#nav-slot" role="tab" aria-controls="nav-slot" aria-selected="true">สล็อต</a>
+                </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-casino" role="tabpanel" aria-labelledby="nav-casino-tab">
+                    <div class="box-product-container">
+                      {% for box in options.casino_block %}
+                        {% set content = TimberPost(box.casino_block_link) %}
+                        <div class="box-product {% if box.casino_block_hot == true %}hot{% endif %} casino_game" id="{{ content.ID }}" style="background-image: url('{{ TimberImage(box.casino_block_logo).src }}">
+                            <input type="hidden" value="{{ content.ID }},{{ content.casino_prefix }}" class="getlink"/>
+                            <div class="btn btn-game">เล่นเกม</div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="nav-slot" role="tabpanel" aria-labelledby="nav-slot-tab">
+                    <div class="box-product-container">
+                      {% for box in options.slot_block %}
+                        {% set content = TimberPost(box.slot_block_link) %}
+                        <a href="{{ content.link }}" class="box-product {% if box.slot_block_hot == true %} hot{% endif %}" style="background-image: url('{{ TimberImage(box.slot_block_logo).src }}">
+                          <div class="btn btn-game">เล่นเกม</div>
+                        </a>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="sec-wallet">
+  <div class="container">
+    <div class="wrapper">
+        {# {% if options.comment is not empty %} #}
+        <div class="box-comment-wrapper">
+            <div class="title"><h2 class="text-center">{{ options.comment_title }}</h2></div>
+            <div class="box-wrapper">
+                <div class="comment-form">
+                  {{ function('comment_form') }}
+                </div>
+                {% for comment in page.comments %}
+                  <div class="box-comment" id="comment-{{ comment.id }}">
+                    <div class="box-comment__detail">
+                        <div class="name">{{ comment.author.name|striptags|length > 8 ? comment.author.name|striptags|slice(0, 8) ~ '..' : comment.author.name|striptags }}</div>
+                        <div class="date">{{ comment.date }} {{comment.time}}</div>
+                    </div>
+                    <div class="box-comment__text">
+                        {{ comment.content }}
+                    </div>
+                  </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+        {# {% endif %} #}
+        {% if options.jackpot is not empty %}
+        <div class="box-wallet-wrapper">
+            <div class="title"><h2 class="text-center">{{ options.jackpot_title }}</h2></div>
+            <div class="box-wrapper-wallet swiper-container"  id="wallet-update">
+                <div class="swiper-wrapper">
+                {% for jackpot in options.jackpot %}
+                <div class="box-wallet swiper-slide">
+                    <img src="{{ theme.path }}/images/award.png">
+                    <div class="box-wallet__user">{{ jackpot.jackpot_user }}</div>
+                    <div class="box-wallet__price">{{ jackpot.jackpot_price }}</div>
+                </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

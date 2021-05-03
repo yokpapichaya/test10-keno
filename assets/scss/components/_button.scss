@@ -1,0 +1,86 @@
+//
+// Buttons
+// --------------------------------------------------
+.btn {
+    border: none;
+    background: $white;
+    text-align: center;
+    padding: 1rem 2rem;
+    transition: 0.2s ease-in-out;
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    background-image: none;
+    white-space: nowrap;
+    box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.28);
+    transform-origin: bottom;
+    text-transform: uppercase;
+    color: $gray;
+    &:hover,
+    &:focus,
+    &.focus {
+        box-shadow: none;
+        transform: scale(0.99);
+        color: $theme-color;
+    }
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+        cursor: no-drop;
+        background: #ababab;
+    }
+    &.no-shadow {
+        box-shadow: none;
+        &:hover,
+        &:focus,
+        &.focus {
+            box-shadow: none;
+            transform: none;
+        }
+    }
+    &.no-logged{
+        display: inline-block !important;
+    }
+    &.login,
+    &.logout{
+        background-image: $gradient;
+        color: $white;
+        display: none;
+    }
+    &.join-now{
+        background-image: $gradient;
+        display: none;
+        color: $white;
+    }
+    &.login{
+        margin-right: 0.5rem;
+    }
+    &.btn-game{
+        background: #317aed;
+        color: $white;
+        box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.6);
+        z-index: 1;
+        border-radius: 1rem;
+        position: absolute;
+        left: 80%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: $gobal-transition;
+        @media screen and (max-width: 767px) {
+            font-size: 1.4rem;
+            padding: 1rem;
+            display: none;
+        }
+    }
+}
+
+
+a.btn {
+    &.disabled,
+    fieldset[disabled] & {
+        pointer-events: none;
+    }
+}

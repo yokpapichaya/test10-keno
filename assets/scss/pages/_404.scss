@@ -1,0 +1,20 @@
+.page-error {
+    height: 80vh;
+    @include flex;
+    align-items: center;
+    &__btn {
+        margin-top: 3rem;
+    }
+    &__body{
+        height: 100%;
+        margin: 13rem 0;
+        @media screen and (max-width: 1200px) {
+            margin: 5rem 0;
+        }
+        h1,
+        h2,
+        .page-error__btn{
+            width: 100%;
+        }
+    }
+}

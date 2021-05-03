@@ -1,0 +1,31 @@
+{% extends 'base.twig' %}
+{% block content %}
+
+<section class="sec-user" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+        <div class="box-user">
+            <div class="box-user__image"><img src="{{ theme.path }}/images/account.png" class="qrcode" alt="qrcode"></div>
+            <div class="box-user__text">
+                <h3>{{ options.c_title }}</h3>
+            {{ options.c_content }}</div>
+        </div>
+    </div>
+</section>
+
+<section class="sec-contact">
+    <div class="container">
+        <div class="box-contact-wrap">
+            {% for box in options.c_group %}
+            <div class="box-contact" data-aos="fade-up" data-aos-duration="1000">
+                <div class="box-contact__qrcode">
+                    <img src="{{ TimberImage(box.c_qrcode).src }}" class="qrcode" alt="qrcode">
+                </div>
+                <div class="box-contact__btn">
+                    <a href="{{ box.c_link }}" target="_blank" class="box-contact__lineid btn">{{ box.c_id }}</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

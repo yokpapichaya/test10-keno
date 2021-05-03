@@ -1,0 +1,29 @@
+{% extends 'base.twig' %}
+{% block content %}
+
+<section class="sec-page-content" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+        {{ options.casino_content }}
+    </div>
+</section>
+
+<section class="sec-blockcasino">
+    <div class="container">
+        <div class="box-product-container">
+            {% for box in options.casino_block %}
+                {% set content = TimberPost(box.casino_block_link) %}
+                <div class="box-product casino_game {% if box.casino_block_hot == true %}hot{% endif %}" style="background-image: url('{{ TimberImage(box.casino_block_logo).src }}">
+                    <input type="hidden" value="{{ content.ID }},{{ content.casino_prefix }}" class="getlink"/>
+                    {# <div class="box-product__image"><img src="{{ TimberImage(box.casino_block_logo).src }}"></div>
+                    <div class="box-product__detail">
+                        <h3>{{ content.post_title }}</h3>
+                    </div> #}
+                    <div class="btn btn-game" id="{{ content.ID }}">เล่นเกม</div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

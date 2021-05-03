@@ -1,0 +1,32 @@
+{% extends 'base.twig' %}
+{% block content %}
+{% include 'templates/partial/banner.twig' %}
+
+<section class="sec-promotion">
+ {% set pro = options.pro_title_group %}
+    <div class="container">
+        <div class="box-con">
+            <h2 class="text-center">{{ page.title }}</h2>
+            <div class="pro-box" data-aos="fade-up" data-aos-duration="1000">
+                <div class="box-promotion-wrapper">
+                    {% for box in options.pro_slot %}
+                        {% if box.pro_slot_hide != true %}
+                        <div class="box-promotion" data-aos="fade-up" data-aos-duration="1000">
+                            <div class="box-promotion__image">
+                                <img src="{{ TimberImage(box.pro_slot_image).src }}">
+                            </div>
+                            <div class="box-promotion__text">
+                                <div class="title"><h3>{{ box.pro_slot_subject }}</h3></div>
+                                <div class="condition">
+                                    <div class="detail">{{ box.pro_slot_condition }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

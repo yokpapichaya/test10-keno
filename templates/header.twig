@@ -1,0 +1,129 @@
+<header id="myHeader">
+{# <div id="page-anim-preloader"></div> #}
+    <div class="logo-container">
+        <div class="container">
+            <a href="{{ site.url }}" class="logo"><img src="{{ TimberImage(options.logo_website).src }}" alt="logo website"></a>
+            <div class="button-container">
+                <a href="{{ site.url }}/login" class="btn login btn-check">
+                    <i class="i-login"></i>
+                    <span>{{ __('เข้าสู่ระบบ', 'template')  }}</span>
+                </a>
+                <a href="{{ site.url }}/register" class="btn join-now btn-check">
+                <i class="i-user"></i>
+                <span>{{ __('สมัครสมาชิก', 'template')  }}</span>
+                </a>
+                <div class="btn logout" onclick="window.location.href='';sessionStorage.clear();">
+                    <i class="i-login"></i>
+                    <span>{{ __('ออกจากระบบ', 'template')  }}</span>
+                </div>
+            </div>
+             <div class="menu-hamburger">
+                <span class="menu-hamburger__line"></span>
+                <span class="menu-hamburger__line"></span>
+                <span class="menu-hamburger__line"></span>
+            </div>
+        </div>
+    </div>
+    <div class="main-haeader">
+        <div class="navbar">
+            <div class="container">
+                <div class="menu">
+                    <ul class="menu-list">
+                    {% for item in options.main_menu %}
+                        <li class="menu-list__item">
+                            <a href="{% if item.check_link == 'out' %}{{ item.url }}{% elseif item.check_link == 'in' %}{{ TimberPost(item.page_link).link }}{% else %}ambbet.com{% endif %}" {% if item.check_link != 'in' %}target="_blank"{% endif %} class="menu_check {% if item.check_link == 'sport' %}sport-item{% endif %}">
+                                <i class="icon-menu" style="background-image: url('{{ TimberImage(item.icon).src }}')"></i>
+                                {{ item.menu_name }}
+                                {% if item.usesub == 1 %}
+                                    <i class="i-arrow-down"></i>
+                                {% endif %}
+                            </a>
+                        {% if item.usesub == 1 %}
+                            <div class="sub-menu">
+                                <ul class="nav-drop">
+                                    {% for child in item.sub_menu %}
+                                        <li class="nav-drop-item">
+                                            <a href="{% if child.check_link == 'in' %}{{ TimberPost(child.page_link).link }}{% else %}{{ child.url }}{% endif %}">{{ child.menu_name }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-menu">
+        <nav class="nav js-nav">
+            <ul class="nav__list js-nav__list">
+               {% for item in options.main_menu %}
+                    <li class="nav__item {% if item.sub_menu == true %}has-child{% endif %}">
+                    <a href="{% if item.check_link == 'out' %}{{ item.url }}{% elseif item.check_link == 'in' %}{{ TimberPost(item.page_link).link }}{% else %}ambbet.com{% endif %}" class="nav__link {% if item.check_link == 'sport' %}sport-item{% endif %}">{{ item.menu_name }}</a>
+                   {% if item.usesub == 1 %}
+                    <i class="i-arrow-down"></i>
+                    <div class="sub-menu">
+                        <ul class="nav-drop">
+                             {% for child in item.sub_menu %}
+                                <li class="nav-drop-item">
+                                    <a href="{% if child.check_link == 'in' %}{{ TimberPost(child.page_link).link }}{% else %}{{ child.url }}{% endif %}">{{ child.menu_name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+             <div class="button-container">
+                    <a href="{{ site.url }}/login" class="btn login btn-check">
+                        <i class="i-login"></i>
+                        <span>{{ __('เข้าสู่ระบบ', 'template')  }}</span>
+                    </a>
+                    <a href="{{ site.url }}/register" class="btn join-now btn-check">
+                        <i class="i-user"></i>
+                        <span>{{ __('สมัครสมาชิก', 'template')  }}</span>
+                        </a>
+                    <div class="btn logout" onclick="window.location.href='';sessionStorage.clear();">
+                        <i class="i-login"></i>
+                        <span>{{ __('ออกจากระบบ', 'template')  }}</span>
+                    </div>
+                </div>
+            </div>
+	    </nav>
+    </div>
+    <div class="menu-below">
+        <div class="menu-container">
+            <a href="{{ site.url }}" class="menu-list">
+                <div class="menu-list__icon"><img src="{{ theme.path }}/images/home-run.png"></div>
+                <div class="menu-list__text">หน้าแรก</div>
+            </a>
+            <a href="{{ site.url }}/promotion" class="menu-list">
+                <div class="menu-list__icon"><img src="{{ theme.path }}/images/tag.png"></div>
+                <div class="menu-list__text">โปรโมชั่น</div>
+            </a>
+            <a href="{{ site.url }}/login" class="menu-list btn-login login btn-check">
+                <div class="menu-list__icon"><img src="{{ theme.path }}/images/login.png"></div>
+                <div class="menu-list__text">เข้าสู่ระบบ</div>
+            </a>
+            <a class="menu-list btn logout" onclick="window.location.href='';sessionStorage.clear();">
+                <div class="menu-list__icon"><img src="{{ theme.path }}/images/login.png"></div>
+                <div class="menu-list__text">ออกจากระบบ</div>
+            </a>
+            <a href="{{ site.url }}/p-wallet" class="menu-list btn logout">
+                <div class="menu-list__icon"><img src="{{ theme.path }}/images/wallet.png"></div>
+                <div class="menu-list__text">ฝาก-ถอน</div>
+            </a>
+            <a href="{{ site.url }}/register" class="menu-list login btn-check">
+                <div class="menu-list__icon"><img src="{{ theme.path }}/images/user.png"></div>
+                <div class="menu-list__text">สมัครสมาชิก</div>
+            </a>
+            <a href="{{ site.url }}/contact" class="menu-list">
+                <div class="menu-list__icon"><img src="{{ theme.path }}/images/network.png"></div>
+                <div class="menu-list__text">ติดต่อเรา</div>
+            </a>
+        </div>
+    </div>
+</header>

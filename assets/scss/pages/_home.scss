@@ -1,0 +1,261 @@
+.home{
+    .sec-service{
+        padding: 3rem 0;
+        @media screen and (max-width: 767px) {
+            background-color: #9abbee;
+        }
+        >.container{
+            // padding: 0 6rem;
+            @media screen and (max-width: 767px) {
+                padding: 0 1.5rem;
+            }
+            .box-service-container{
+                -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
+                -moz-box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
+                border-radius: 1rem;
+                background-color: #ffffff9e;
+                padding: 2rem 0;
+                align-items: center;
+                justify-content: center;
+                overflow-x: scroll;
+                ::-webkit-scrollbar-track {
+                  background: #f1f1f1;
+                }
+                
+                /* Handle */
+                ::-webkit-scrollbar-thumb {
+                  background: #888;
+                }
+                
+                /* Handle on hover */
+                ::-webkit-scrollbar-thumb:hover {
+                  background: #555;
+                }
+                @media screen and (max-width: 767px) {
+                    box-shadow: none;
+                    background-color: transparent;
+                    border-radius: 0;
+                    flex-wrap: inherit;
+                    justify-content: flex-start;
+                }
+                .box-service{
+                    @include flexcenter();
+                    overflow: hidden;
+                    padding: 0;
+                    // height: 14rem;
+                    border-radius: 100%;
+                    background-size: cover;
+                    background-position: center;
+                    text-decoration: none;
+                    animation: pulse-black 2s infinite;
+                    box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+                    &:last-child{
+                        margin-right: 0!important;
+                    }
+                    img{
+                        margin: 0 auto;
+                        max-width: 75%;
+                    }
+                    @media screen and (max-width: 767px) {
+                        // height: 9.5rem;
+                     }
+                     .box-service-hover{
+                         transition: $gobal-transition;
+                         background-color: #000000b0;
+                         color: $white;
+                         font-weight: bold;
+                         width: 100%;
+                         height: 100%;
+                         border-radius: 100%;
+                         padding: 37% 0;
+                         @include flexcenter();
+                         font-family: $font-family-base;
+                     }
+                }
+                .swiper-scrollbar{
+                    opacity: 1!important;
+                    bottom: 0rem;
+                }
+            }
+        }
+    }
+
+    .sec-tab{
+        .container{
+            .box-con{
+                @include flex();
+                margin-top: 2rem;
+                @media screen and (max-width: 767px) {
+                    display: inherit;
+                }
+                .box-advertising{
+                    margin-bottom: 2rem;
+                }
+            }
+        }
+        .nav-tabs {
+            border-bottom: none;
+            .nav-link{
+                color: $white;
+                padding: 1.5rem 0;
+                border: none;
+                font-family: $font-family-base;
+                background-color: #000000d1;
+                &.active,
+                &:hover{
+                    background-image: $gradient;
+                    border-color: transparent;
+                    color: $white;
+                    
+                }
+                &#nav-profile-tab{
+                    position: relative;
+                }
+            }
+        }
+        .tab-content{ 
+            padding: 2rem 0;
+        }
+    }
+
+    .sec-wallet{
+        .wrapper{
+            @include flex();
+            flex-wrap: wrap;
+            margin-bottom: 6rem;
+            @media screen and (max-width: 767px) {
+                display: inherit;
+                margin-bottom: 4rem;
+            }
+            .box-wrapper{
+                overflow-y: scroll;
+                max-height: 40rem;
+                background-color: $white;
+                padding: 2rem;
+            }
+            .box-comment-wrapper{
+                width: 70%;
+                padding-top: 1rem;
+                @media screen and (max-width: 1023px) {
+                    width: 55%;
+                }
+                @media screen and (max-width: 767px) {
+                    width: 100%;
+                }
+                h2{
+                    color: $white;
+                }
+                .box-comment{
+                    margin: 1rem 0;
+                    padding: 2rem;
+                    background-color:$blue;
+                    border-radius: 1rem;
+                    font-weight: bold;
+                    &__detail{
+                        @include flex();
+                        margin-bottom: 1rem;
+                        .name{
+                            margin-right: 1rem;
+                        }
+                    }
+                    &__star{
+                        @include flex();
+                        margin: 1rem 0;
+                    }
+                    &__text{
+                        font-weight: 400;
+                    }
+                }
+            }
+            .box-wrapper-wallet{
+                background-color: #00000075;
+                padding: 0 2rem;
+                max-height: 40rem;
+                .swiper-container{
+                    max-height: 40rem;
+                }
+            }
+            .title{
+                background: repeating-linear-gradient(0deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,.1) 1px,hsla(0,0%,100%,0) 0,hsla(0,0%,100%,0) 2px);
+                padding: 1rem;
+                h2{
+                    margin-bottom: 0;
+                    color: $white;
+                }
+            }
+            .box-wallet-wrapper{
+                width: calc(30% - 2rem);
+                margin-left: 2rem;
+                overflow: hidden;
+                padding-top: 1rem;
+                @media screen and (max-width: 1023px) {
+                    width: calc(45% - 2rem);
+                }
+                @media screen and (max-width: 767px) {
+                    width: 100%;
+                    margin-left: 0;
+                    margin-top: 2rem;
+                }
+                .box-wallet{
+                    @include flex();
+                    justify-content: space-between;
+                    align-items: center;
+                    border-bottom: 0.2rem solid $blue;
+                    padding:2rem 1rem;
+                    height: 8rem;
+                    color: $blue;
+                    font-weight: bold;
+                    &:last-child{
+                        border-bottom: none;
+                    }
+                    img{
+                        width: 20%;
+                    }
+                    &__user{
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+    }
+
+    .comment-form{
+        background-color:$blue;
+        padding: 1rem;
+        border-radius: 1rem;
+        .form-submit{
+            input{
+                padding: 1rem 2rem;
+                transition: 0.2s ease-in-out;
+                font-family: $font-family-base;
+                font-size: $font-size-base;
+                box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.28);
+                transform-origin: bottom;
+                background-image: $gradient;
+                border: none;
+            }
+        }
+        #reply-title,
+        .comment-form-cookies-consent,
+        .comment-notes{
+            color: $white;
+            label{
+                color: $white;
+            }
+        }
+        .comment-form-author,
+        .comment-form-email,
+        .comment-form-url,
+        .comment-form-comment{
+            label{
+                color: $white;
+            }
+            input{
+                box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.28);
+                border: none;
+                color: $blue;
+            }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+@import '~swiper/css/swiper.css';
+@import '~bootstrap/dist/css/bootstrap.css';
+
+@import 'settings/variables';
+@import 'settings/normalize';
+@import 'settings/mixin';
+@import 'settings/gobal';
+@import 'settings/typography';
+
+@import 'layouts/header';
+@import 'layouts/footer';
+
+@import 'components/button';
+@import 'components/banner';
+@import 'components/icons';
+@import 'components/box';
+@import 'components/bg';
+
+@import 'pages/home';
+@import 'pages/promotion';
+@import 'pages/casino';
+@import 'pages/slot';
+@import 'pages/contact';
+@import 'pages/404';

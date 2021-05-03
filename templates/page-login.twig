@@ -1,0 +1,36 @@
+{% extends 'base.twig' %}
+{% block content %}
+
+<section class="sec-login">
+    <div class="container">
+     <form method="post" class="form-action check-btn fadeInUp text-center" data-action="login">
+        <div class="box-login">
+            <div class="box-login__instruction">เว็บคาสิโนสด เบอร์ 1 ของประเทศไทย</div>
+            <div class="box-login__input">
+                {% set login = options.login_data %}
+                <input type="hidden" name="prefix" id="prefix" value="{{ login.prefix }}">
+                <input type="hidden" name="substring" id="substring" value="{{ login.substring }}">
+                <input type="hidden" name="loginurl" id="loginurl" value="{{ login.url_login }}">
+                <div class="username input-box"><input type="text" name="username" id="username" placeholder="ชื่อผู้ใช้" required></div>
+                <div class="form-group">
+                    <div class="password input-box">
+                        <input type="password" name="password" id="password" placeholder="รหัสผ่าน" required>
+                    </div>
+                    <div class="error-pass">รหัสผู้ใช้ หรือ รหัสผ่านไม่ถูกต้อง</div>
+                </div>
+            </div>
+            <div class="box-login__btn">
+                <button type="submit" class="btn gradient btn-login">เข้าสู่ระบบ</button>
+                {# <div id="btn-login" class="btn gradient">{{ __('เข้าสู่ระบบ', 'template')  }}</div> #}
+            </div>
+            <div class="box-login__register">
+                ต้องการสมัครสมาชิกใหม่ใช่ไหม? 
+                <a href="{{ site.link }}/register" target="_blank">สมัครสมาชิก</a>
+            </div>
+        </div>
+     </form>   
+    </div>
+</section>
+
+
+{% endblock %}

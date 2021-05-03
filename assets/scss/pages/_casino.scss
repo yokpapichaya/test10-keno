@@ -1,0 +1,39 @@
+.page-template-page-casino{
+    .sec-blockcasino{
+        padding-bottom: 2rem;
+        @media screen and (max-width: 1200px) {
+            padding: 2rem 0;
+        }
+        .box-allgame{
+            width: calc(50% - 1rem);
+            @media screen and (max-width: 1200px) {
+                &:nth-child(3){
+                    margin-right: 1rem;
+                }
+            }
+            @media screen and (max-width: 1023px) {
+                &:nth-child(2n){
+                    margin-right: 0rem;
+                }
+                &:nth-child(3){
+                    margin-right: 1.5rem;
+                }
+            }
+            @media screen and (max-width: 767px) {
+                width: 100%;
+                margin-right: 0!important;
+            }
+            &:hover{
+                -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
+                -moz-box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
+                .box-allgame__logo{
+                    img{
+                        transition: $gobal-transition;
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+    }
+}

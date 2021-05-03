@@ -1,0 +1,33 @@
+i{
+    display: inline-block;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50%;
+    transition: all .25s ease-in-out;
+    &.i-login{
+        background-image: url(../images/icons/login.png);
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    &.i-user{
+        background-image: url(../images/icons/user.png);
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    &.i-arrow-down{
+        background-image: url(../images/icons/down-arrow.png);
+        width: 1rem;
+        height: 1rem;
+    }
+    &.i-annoutment{
+        background-image: url(../images/icons/bullhorn.png);
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+    &.icon-menu {
+        width: 1.8rem;
+        height: 1.8rem;
+        margin-right: 0.5rem;
+    }
+}
