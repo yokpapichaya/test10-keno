@@ -1,5 +1,6 @@
 {% extends "base.twig" %}
 {% block content %}
+{% set content = TimberPost(options_h_blockgame.h_link) %}
 <section class="box-list-game">
 	<div class="container">
 		<div class="box-list-game__bc">
@@ -8,7 +9,7 @@
             <i class="fas fa-chevron-right"></i>
             <span>{{ post.title }}</span>
         </div>
-		<div id="{{ post.id }}" class="row game-list"></div>
+		<div id="{{ post.id }}" class="row game-list" data-slug="{{ content.postslug }}" ></div>
 	</div>
 </section>
 {% endblock %}

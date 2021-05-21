@@ -180,10 +180,6 @@
         box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
         border-radius: 1rem;
         overflow: hidden;
-        // background-image: $gradient-box;
-        // background-image: linear-gradient(to right top, #0d4494, #1d50a1, #2b5dad, #366aba, #4277c7, #4a80d0, #5188d9, #5991e2, #5f97e9, #659ef0, #6ba4f8, #71abff);
-        transition: 0.5s;
-        // background-size: 200% auto;
         background-repeat: no-repeat;
         background-position: left bottom;
         background-size: cover;
@@ -191,6 +187,24 @@
         @media screen and (max-width: 767px) {
             width: 100%;
             margin-right: 0;
+        }
+        &.disabled{
+            pointer-events: none !important;
+            filter: grayscale(100);
+            .noti {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                text-align: center;
+                width: 100%;
+                padding: 0.5rem 1rem;
+                color: $white;
+                background-color: red;
+                border-top-right-radius: 0.5rem;
+                border-bottom-right-radius: 0.5rem;
+                z-index: 1;
+                font-family: $font-family-base;
+            }
         }
         &:hover,
         &:focus {
@@ -454,6 +468,11 @@
 
 .box-list-game{
     margin-bottom: 2rem;
+    h3{
+        margin: 4rem;
+        text-align: center;
+        min-height: 80vh;
+    }
     .box-card-promotion{
         border-radius: 0.5rem;
         // border: 0.1rem solid $theme-color;

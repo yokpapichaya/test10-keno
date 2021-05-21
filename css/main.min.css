@@ -12182,7 +12182,6 @@ i {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     border-radius: 1rem;
     overflow: hidden;
-    transition: 0.5s;
     background-repeat: no-repeat;
     background-position: left bottom;
     background-size: cover;
@@ -12191,6 +12190,22 @@ i {
       .box-product-container .box-product {
         width: 100%;
         margin-right: 0; } }
+    .box-product-container .box-product.disabled {
+      pointer-events: none !important;
+      filter: grayscale(100); }
+      .box-product-container .box-product.disabled .noti {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        width: 100%;
+        padding: 0.5rem 1rem;
+        color: #fff;
+        background-color: red;
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        z-index: 1;
+        font-family: "Kanit", sans-serif; }
     .box-product-container .box-product:hover .btn-game, .box-product-container .box-product:focus .btn-game {
       left: 50%;
       top: 50%;
@@ -12413,6 +12428,10 @@ i {
 
 .box-list-game {
   margin-bottom: 2rem; }
+  .box-list-game h3 {
+    margin: 4rem;
+    text-align: center;
+    min-height: 80vh; }
   .box-list-game .box-card-promotion {
     border-radius: 0.5rem;
     background-image: linear-gradient(to bottom, #71abff, #79affe, #80b3fd, #88b6fb, #8fbafa, #92bbf8, #96bdf6, #99bef4, #99bdf1, #9abcee, #9abbec, #9abae9);

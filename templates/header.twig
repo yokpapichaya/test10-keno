@@ -12,7 +12,7 @@
                 <i class="i-user"></i>
                 <span>{{ __('สมัครสมาชิก', 'template')  }}</span>
                 </a>
-                <div class="btn logout" onclick="window.location.href='';sessionStorage.clear();">
+                <div class="btn logout" onclick="window.location.href='';sessionStorage.removeItem('token'); sessionStorage.removeItem('user'); sessionStorage.removeItem('redirect');">
                     <i class="i-login"></i>
                     <span>{{ __('ออกจากระบบ', 'template')  }}</span>
                 </div>
@@ -86,7 +86,7 @@
                         <i class="i-user"></i>
                         <span>{{ __('สมัครสมาชิก', 'template')  }}</span>
                         </a>
-                    <div class="btn logout" onclick="window.location.href='';sessionStorage.clear();">
+                    <div class="btn logout" onclick="window.location.href='';sessionStorage.removeItem('token'); sessionStorage.removeItem('user'); sessionStorage.removeItem('redirect');">
                         <i class="i-login"></i>
                         <span>{{ __('ออกจากระบบ', 'template')  }}</span>
                     </div>
@@ -108,7 +108,7 @@
                 <div class="menu-list__icon"><img src="{{ theme.path }}/images/login.png"></div>
                 <div class="menu-list__text">เข้าสู่ระบบ</div>
             </a>
-            <a class="menu-list btn logout" onclick="window.location.href='';sessionStorage.clear();">
+            <a class="menu-list btn logout" onclick="window.location.href='';sessionStorage.removeItem('token'); sessionStorage.removeItem('user'); sessionStorage.removeItem('redirect');">
                 <div class="menu-list__icon"><img src="{{ theme.path }}/images/login.png"></div>
                 <div class="menu-list__text">ออกจากระบบ</div>
             </a>

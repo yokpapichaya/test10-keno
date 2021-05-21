@@ -98,7 +98,9 @@ if (sessionStorage.getItem("token")) {
                         } else {
                             window.location.href = 'https://' + domain + '/#!/redirect?username=' + sessionStorage.getItem('user') + '&password=' + atob(sessionStorage.getItem('redirect')) + '&hash=5f72244f8b08c13bf4ac8f24&url=' + window.location.origin;
                         }
-                        sessionStorage.clear();
+                        sessionStorage.removeItem('token');
+                        sessionStorage.removeItem('user');
+                        sessionStorage.removeItem('redirect');
                     }
                 });
 
@@ -154,7 +156,7 @@ if (sessionStorage.getItem("token")) {
             init: function () {
 
             },
-            finalize: function () {
+            finalize: async function () {
 
                 //box all game casino
                 var linkURL = [];
@@ -209,7 +211,9 @@ if (sessionStorage.getItem("token")) {
                                     } else {
                                         if (resp.data.code == 1005) {
                                             alert(resp.data.message)
-                                            sessionStorage.clear();
+                                            sessionStorage.removeItem('token');
+                                            sessionStorage.removeItem('user');
+                                            sessionStorage.removeItem('redirect');
                                             $('.popup.login').addClass('open');
                                         } else {
                                             alert(resp.data.message)
@@ -224,7 +228,9 @@ if (sessionStorage.getItem("token")) {
                                     } else {
                                         if (resp.data.code == 1005) {
                                             alert(resp.data.message)
-                                            sessionStorage.clear();
+                                            sessionStorage.removeItem('token');
+                                            sessionStorage.removeItem('user');
+                                            sessionStorage.removeItem('redirect');
                                             $('.popup.login').addClass('open');
                                         } else {
                                             alert(resp.data.message)
@@ -241,7 +247,9 @@ if (sessionStorage.getItem("token")) {
                                     } else {
                                         if (resp.data.code == 1005) {
                                             alert(resp.data.message)
-                                            sessionStorage.clear();
+                                            sessionStorage.removeItem('token');
+                                            sessionStorage.removeItem('user');
+                                            sessionStorage.removeItem('redirect');
                                             $('.popup.login').addClass('open');
                                         } else {
                                             alert(resp.data.message)
@@ -256,7 +264,9 @@ if (sessionStorage.getItem("token")) {
                                     } else {
                                         if (resp.data.code == 1005) {
                                             alert(resp.data.message)
-                                            sessionStorage.clear();
+                                            sessionStorage.removeItem('token');
+                                            sessionStorage.removeItem('user');
+                                            sessionStorage.removeItem('redirect');
                                             $('.popup.login').addClass('open');
                                         } else {
                                             alert(resp.data.message)
@@ -306,7 +316,9 @@ if (sessionStorage.getItem("token")) {
                                 } else {
                                     if (resp.data.code == 1005) {
                                         alert(resp.data.message)
-                                        sessionStorage.clear();
+                                        sessionStorage.removeItem('token');
+                                        sessionStorage.removeItem('user');
+                                        sessionStorage.removeItem('redirect');
                                         window.location.href = location.hostname + '/login';
                                     } else {
                                         alert(resp.data.message)
@@ -320,7 +332,9 @@ if (sessionStorage.getItem("token")) {
                                 } else {
                                     if (resp.data.code == 1005) {
                                         alert(resp.data.message)
-                                        sessionStorage.clear();
+                                        sessionStorage.removeItem('token');
+                                        sessionStorage.removeItem('user');
+                                        sessionStorage.removeItem('redirect');
                                         window.location.href = location.hostname + '/login';
                                     } else {
                                         alert(resp.data.message)
@@ -331,13 +345,55 @@ if (sessionStorage.getItem("token")) {
                         }
                     }
                 });
+
+                var listData;
+                const getJson = async function () {
+                    var data = await axios.get(`https://cdn.ambbet.com/gamelist-ambbet.json`);
+                    return data;
+                }
+
+                
+                if (sessionStorage.getItem('data_slug')) {
+                    listData = JSON.parse(sessionStorage.getItem('data_slug'));
+                } else {
+                    var jsonData = await getJson();
+                    var gameItem = jsonData.data;
+                    listData = gameItem;
+                    sessionStorage.setItem('data_slug', JSON.stringify(gameItem));
+                }
+
+                setTimeout(() => {
+                    var dataCasino = listData.lists.filter(item => item.type == 'casino');
+                    $.each(dataCasino, function(index,value) {
+                        if(!value.active) {
+                            $(`.casino_game[data-slug=${value.productCode}]`).addClass('disabled');
+                            $(`.casino_game[data-slug=${value.productCode}]`).append('<div class="noti">ปิดปรับปรุง</div>');
+                        }
+                    });
+                    
+                    var dataKeno = listData.lists.filter(item => item.type == 'keno');
+                    $.each(dataKeno, function(index,value) {
+                        if(!value.active) {
+                            $(`.keno[data-slug=${value.productCode}]`).addClass('disabled');
+                            $(`.keno[data-slug=${value.productCode}]`).append('<div class="noti">ปิดปรับปรุง</div>');
+                        }
+                    });
+
+                    var dataSlot = listData.lists.filter(item => item.type == 'slot');
+                    $.each(dataSlot, function(index,value) {
+                        if(!value.active) {
+                            $(`.slot_game[data-slug=${value.productCode}]`).addClass('disabled');
+                            $(`.slot_game[data-slug=${value.productCode}]`).append('<div class="noti">ปิดปรับปรุง</div>');
+                        }
+                    });
+                }, 500);
             }
         },
         'page_template_page_casino': {
             init: function () {
                
             },
-            finalize: function () {
+            finalize: async function () {
                 var linkURL = [];
 
                 $('.getlink').each(function (index) {
@@ -379,7 +435,9 @@ if (sessionStorage.getItem("token")) {
                                     } else {
                                         if (resp.data.code == 1005) {
                                             alert(resp.data.message)
-                                            sessionStorage.clear();
+                                            sessionStorage.removeItem('token');
+                                            sessionStorage.removeItem('user');
+                                            sessionStorage.removeItem('redirect');
                                             location.href = '/login';
                                         } else {
                                             alert(resp.data.message)
@@ -395,7 +453,9 @@ if (sessionStorage.getItem("token")) {
                                     } else {
                                         if (resp.data.code == 1005) {
                                             alert(resp.data.message)
-                                            sessionStorage.clear();
+                                            sessionStorage.removeItem('token');
+                                            sessionStorage.removeItem('user');
+                                            sessionStorage.removeItem('redirect');
                                             location.href = '/login';
                                         } else {
                                             alert(resp.data.message)
@@ -412,7 +472,9 @@ if (sessionStorage.getItem("token")) {
                                     } else {
                                         if (resp.data.code == 1005) {
                                             alert(resp.data.message)
-                                            sessionStorage.clear();
+                                            sessionStorage.removeItem('token');
+                                            sessionStorage.removeItem('user');
+                                            sessionStorage.removeItem('redirect');
                                             location.href = '/login';
                                         } else {
                                             alert(resp.data.message)
@@ -427,7 +489,9 @@ if (sessionStorage.getItem("token")) {
                                     } else {
                                         if (resp.data.code == 1005) {
                                             alert(resp.data.message)
-                                            sessionStorage.clear();
+                                            sessionStorage.removeItem('token');
+                                            sessionStorage.removeItem('user');
+                                            sessionStorage.removeItem('redirect');
                                             location.href = '/login';
                                         } else {
                                             alert(resp.data.message)
@@ -439,13 +503,82 @@ if (sessionStorage.getItem("token")) {
                         }
                     }
                 });
+
+                var listData;
+                const getJson = async function () {
+                    var data = await axios.get(`https://cdn.ambbet.com/gamelist-ambbet.json`);
+                    return data;
+                }
+
+                if (sessionStorage.getItem('data_slug')) {
+                    listData = JSON.parse(sessionStorage.getItem('data_slug'));
+                } else {
+                    var jsonData = await getJson();
+                    var gameItem = jsonData.data;
+                    listData = gameItem;
+                    sessionStorage.setItem('data_slug', JSON.stringify(gameItem));
+                }
+
+                setTimeout(() => {
+                    var dataCasino = listData.lists.filter(item => item.type == 'casino');
+                    $.each(dataCasino, function(index,value) {
+                        if(!value.active) {
+                            $(`.casino_game[data-slug=${value.productCode}]`).addClass('disabled');
+                            $(`.casino_game[data-slug=${value.productCode}]`).append('<div class="noti">ปิดปรับปรุง</div>');
+                        }
+                    });
+                }, 500);
+            }
+        },
+        'page_template_page_slot': {
+            init: function () {
+               
+            },
+            finalize: async function () {
+                var listData;
+                const getJson = async function () {
+                    var data = await axios.get(`https://cdn.ambbet.com/gamelist-ambbet.json`);
+                    return data;
+                }
+
+                if (sessionStorage.getItem('data_slug')) {
+                    listData = JSON.parse(sessionStorage.getItem('data_slug'));
+                } else {
+                    var jsonData = await getJson();
+                    var gameItem = jsonData.data;
+                    listData = gameItem;
+                    sessionStorage.setItem('data_slug', JSON.stringify(gameItem));
+                }
+
+                setTimeout(() => {
+                    var dataSlot = listData.lists.filter(item => item.type == 'slot');
+                    $.each(dataSlot, function(index,value) {
+                        if(!value.active) {
+                            $(`.slot_game[data-slug=${value.productCode}]`).addClass('disabled');
+                            $(`.slot_game[data-slug=${value.productCode}]`).append('<div class="noti">ปิดปรับปรุง</div>');
+                        }
+                    });
+                }, 500);
             }
         },
         'single_slot_game': {
             init: function () {
 
             },
-            finalize: function () {
+            finalize: async function () {
+                var listData;
+                const getJson = async function () {
+                    var data = await axios.get(`https://cdn.ambbet.com/gamelist-ambbet.json`);
+                    return data;
+                }
+                if (sessionStorage.getItem('data_slug')) {
+                    listData = JSON.parse(sessionStorage.getItem('data_slug'));
+                } else {
+                    var jsonData = await getJson();
+                    var gameItem = jsonData.data;
+                    listData = gameItem;
+                    sessionStorage.setItem('data_slug', JSON.stringify(gameItem));
+                }
                 var id = $('.game-list').attr("id");
                 var url;
                 if (!url) url = window.location.href;
@@ -475,17 +608,28 @@ if (sessionStorage.getItem("token")) {
                                     let uri = url_listgame;
                                     let resp = await axios.get(uri)
                                     if (resp.data.code == 0) {
-                                        listGame = resp.data.data;
-                                        listGame.forEach(data => {
-                                            $('.game-list').append(`<div class="col-lg-2 col-md-3 col-6">
-                                      <div class="box-card-promotion" data-game="${data.gameId}" data-key="${data.gameKey}" data-active="${data.isActive}">
-                                      <div class="box-card-promotion__img"><img class="list-image" src="${data.imageUrl}"></div>
-                                          <div class="box-card-promotion__caption">
-                                              ${data.gameName.en}
-                                          </div>
-                                      </div>
-                                  </div>`)
-                                        })
+                                        var status = listData.lists.filter(item => item.productCode == $('.game-list').data('slug'))[0];
+                                        if(status.active) {
+                                            listGame = resp.data.data;
+                                            listGame.forEach(data => {
+                                                $('.game-list').append(`<div class="col-lg-2 col-md-3 col-6">
+                                        <div class="box-card-promotion" data-game="${data.gameId}" data-key="${data.gameKey}" data-active="${data.isActive}">
+                                        <div class="box-card-promotion__img"><img class="list-image" src="${data.imageUrl}"></div>
+                                            <div class="box-card-promotion__caption">
+                                                ${data.gameName.en}
+                                            </div>
+                                        </div>
+                                    </div>`)
+                                            })
+                                        }else {
+                                            $('.game-list').append(`<h3>เกมปิดปรับปรุงชั่วคราว ขออภัยในความไม่สะดวก</h3>`);
+                                        }
+                                    }else {
+                                        if(resp.data.message) {
+                                            $('.game-list').append(`<h3>${resp.data.message}</h3>`);
+                                        }else {
+                                            $('.game-list').append(`<h3>เกมปิดปรับปรุงชั่วคราว ขออภัยในความไม่สะดวก</h3>`);
+                                        }
                                     }
                                     $('.box-card-promotion').on('click', function (e) {
                                         if (!sessionStorage.getItem('token')) {
@@ -514,29 +658,45 @@ if (sessionStorage.getItem("token")) {
 
                                     if (resp.data.status == 0) {
                                         if(type == 'pg_slot'){
-                                            listgame.forEach(data => {
-                                                $('.game-list').append(`
-                                            <div id="each-list" class="col-lg-2 col-md-3 col-6">
-                                            <div class="box-card-promotion" data-game="${data.gameCode}">
-                                                <div class="box-card-promotion__img"><img class="list-image" src="https://s3-ap-southeast-1.amazonaws.com/cdn.ambbet.com/${data.imgUrl}" onerror="this.onerror=null;this.src='https://748073e22e8db794416a-cc51ef6b37841580002827d4d94d19b6.ssl.cf3.rackcdn.com/not-found.png';"></div>
-                                                <div class="box-card-promotion__caption">
-                                                    ${data.gameName}
+                                            var status = listData.lists.filter(item => item.productCode == $('.game-list').data('slug'))[0];
+                                            if(status.active) {
+                                                listgame.forEach(data => {
+                                                    $('.game-list').append(`
+                                                <div id="each-list" class="col-lg-2 col-md-3 col-6">
+                                                <div class="box-card-promotion" data-game="${data.gameCode}">
+                                                    <div class="box-card-promotion__img"><img class="list-image" src="https://s3-ap-southeast-1.amazonaws.com/cdn.ambbet.com/${data.imgUrl}" onerror="this.onerror=null;this.src='https://748073e22e8db794416a-cc51ef6b37841580002827d4d94d19b6.ssl.cf3.rackcdn.com/not-found.png';"></div>
+                                                    <div class="box-card-promotion__caption">
+                                                        ${data.gameName}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>`)
-                                            })
+                                            </div>`)
+                                                })
+                                            }else {
+                                                $('.game-list').append(`<h3>เกมปิดปรับปรุงชั่วคราว ขออภัยในความไม่สะดวก</h3>`);
+                                            }
                                         } else {
-                                            listgame.forEach(data => {
-                                                $('.game-list').append(`
-                                            <div id="each-list" class="col-lg-2 col-md-3 col-6">
-                                            <div class="box-card-promotion" data-game="${data.gameId}">
-                                                <div class="box-card-promotion__img"><img class="list-image" src="https://s3-ap-southeast-1.amazonaws.com/cdn.ambbet.com/${data.imgUrl}" onerror="this.onerror=null;this.src='https://748073e22e8db794416a-cc51ef6b37841580002827d4d94d19b6.ssl.cf3.rackcdn.com/not-found.png';"></div>
-                                                <div class="box-card-promotion__caption">
-                                                    ${data.gameName}
+                                            var status = listData.lists.filter(item => item.productCode == $('.game-list').data('slug'))[0];
+                                            if(status.active) {
+                                                listgame.forEach(data => {
+                                                    $('.game-list').append(`
+                                                <div id="each-list" class="col-lg-2 col-md-3 col-6">
+                                                <div class="box-card-promotion" data-game="${data.gameId}">
+                                                    <div class="box-card-promotion__img"><img class="list-image" src="https://s3-ap-southeast-1.amazonaws.com/cdn.ambbet.com/${data.imgUrl}" onerror="this.onerror=null;this.src='https://748073e22e8db794416a-cc51ef6b37841580002827d4d94d19b6.ssl.cf3.rackcdn.com/not-found.png';"></div>
+                                                    <div class="box-card-promotion__caption">
+                                                        ${data.gameName}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>`)
-                                            })
+                                            </div>`)
+                                                })
+                                            }else {
+                                                $('.game-list').append(`<h3>เกมปิดปรับปรุงชั่วคราว ขออภัยในความไม่สะดวก</h3>`);
+                                            }
+                                        }
+                                    }else {
+                                        if(resp.data.message) {
+                                            $('.game-list').append(`<h3>${resp.data.message}</h3>`);
+                                        }else {
+                                            $('.game-list').append(`<h3>เกมปิดปรับปรุงชั่วคราว ขออภัยในความไม่สะดวก</h3>`);
                                         }
                                     }
                                     if (type == 'pg_slot' || type == 'gamatron') {
@@ -728,7 +888,9 @@ if (sessionStorage.getItem("token")) {
                                 focusConfirm: false,
                                 focusCancel: false
                             }).then(function () {
-                                sessionStorage.clear();
+                                sessionStorage.removeItem('token');
+                                sessionStorage.removeItem('user');
+                                sessionStorage.removeItem('redirect');
                                 location.href = window.location.origin + '/login';
                             });
                             return;
